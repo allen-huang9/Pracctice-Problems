@@ -1,0 +1,31 @@
+class Solution {
+    public int[] processQueries(int[] queries, int m) {
+        int[] permutation = new int[m];
+        
+        int[] index = new int[queries.length];
+        int indexCount = 0;
+        
+        for(int i = 0; i < m; i++) {
+            permutation[i] = i+1;    
+        }
+        
+        int temp = 0;
+                
+        for(int k = 0; k < queries.length; k++) {
+            for(int j = 0; j < permutation.length; j++) {
+                if(queries[k] == permutation[j]) {
+                    index[indexCount] = j;
+                    indexCount++;
+                    for(int o = j; o >= 1; o--) {
+                        temp = permutation[o];
+                        permutation[o] = permutation[o-1];
+                        permutation[o-1] = temp;
+                    }
+                    break;
+                }
+            }
+        }
+        
+        return index;
+    }
+}
