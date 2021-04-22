@@ -1,0 +1,19 @@
+language: JavaScript
+
+var interpret = function(command) {
+    
+    let parsedString = '';
+    
+    for(let i = 0; i < command.length; i++) {
+        if(command[i] === 'G') {
+            parsedString += 'G';
+        } else if(command[i] === '(' && command[i+1] === ')') {
+            parsedString += 'o';
+        } else if (command[i] === '(' && command[i+1] === 'a' && command[i+2] === 'l' && command[i+3] === ')' ) {
+            parsedString += 'al';
+        }
+            
+    }
+    
+    return parsedString;
+};
