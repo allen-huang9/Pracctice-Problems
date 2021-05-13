@@ -1,0 +1,64 @@
+language: JavaScript
+
+var maxIceCream = function(costs, coins) {
+    
+    costs.sort((a, b) => a-b);
+    
+    let icecreamBought = 0;
+    
+    for(let i = 0; i < costs.length; i++) {
+        if(coins - costs[i] < 0) {
+            break;
+        } else {
+            coins -= costs[i];
+            icecreamBought++;
+        }
+    }
+    
+    return icecreamBought;
+};
+
+// Using Bucket Sort
+var maxIceCream = function(costs, coins) {
+    
+    const icecreamCost = new Array(100000000);
+    
+    let icecreamBought = 0;
+    
+    for(let i = 0; i < costs.length; i++) {
+        if(icecreamCost[costs[i]] === undefined) {
+            icecreamCost[costs[i]] = [];
+            icecreamCost[costs[i]].push(costs[i]);
+        } else {
+            icecreamCost[costs[i]].push(costs[i]);
+        }
+    }
+    
+    let sortedCosts = [];
+    
+    for(let k = 0; k < icecreamCost.length; k++) {
+        if(k > coins) {
+            break;
+        }
+        
+        if(icecreamCost[k] !== undefined) {
+            sortedCosts = sortedCosts.concat(icecreamCost[k]);
+        }  
+    }
+    
+    let check = 0;
+    for(let j = 0; j < sortedCosts.length; j++) {
+        check = coins - sortedCosts[j];
+
+        if(check < 0) {
+            break;
+        }
+        
+        if(sortedCosts[j] !== undefined && check >= 0) {
+            coins = check;
+            icecreamBought += 1;
+        }
+    }
+     
+    return icecreamBought;
+};
