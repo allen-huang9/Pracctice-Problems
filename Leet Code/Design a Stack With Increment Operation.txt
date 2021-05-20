@@ -1,0 +1,40 @@
+Language: Java
+
+class CustomStack {
+
+    int stackIndex = -1;
+    int size;
+    ArrayList<Integer> stack;
+    public CustomStack(int maxSize) {
+        stack = new ArrayList<>();
+        size = maxSize;
+    }
+    
+    public void push(int x) {
+        if(stack.size()+1 <= size) {
+            stack.add(x);
+            stackIndex++;
+        }
+    }
+    
+    public int pop() {
+        if(stack.size() == 0) {
+            return -1;
+        }
+        
+        return stack.remove(stackIndex--);
+    }
+    
+    public void increment(int k, int val) {
+        int amount;
+        if(k > stack.size()) {
+            amount = stack.size();
+        } else {
+            amount = k;
+        }
+        
+        for(int i = 0; i < amount; i++) {
+            stack.set(i, stack.get(i) + val);
+        }
+    }
+}
