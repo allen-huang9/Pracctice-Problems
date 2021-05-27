@@ -1,0 +1,24 @@
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var specialArray = function(nums) {
+    let count = 0;
+    let x = 0;
+    
+    while(x <= nums.length) {
+        for(let i = 0; i < nums.length; i++) {
+            if(nums[i] >= x) {
+                count++;
+            }
+        }
+        
+        if(count === x) {
+            return x
+        }
+        
+        count = 0;
+        x++;
+    }
+    return -1;
+};
