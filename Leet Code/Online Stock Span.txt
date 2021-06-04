@@ -1,0 +1,24 @@
+Language: JavaScript
+
+var StockSpanner = function() {
+    this.priceArray = [];
+};
+
+/** 
+ * @param {number} price
+ * @return {number}
+ */
+StockSpanner.prototype.next = function(price) {    
+    this.priceArray.push(price);
+    let countDays = 1;
+    
+    for(let i = this.priceArray.length - 2; i >= 0; i--) {
+        if(this.priceArray[i] <= price) {
+            countDays++;
+        } else {
+            return countDays;
+        }
+    }
+    
+    return countDays;
+};
