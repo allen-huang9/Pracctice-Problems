@@ -1,0 +1,59 @@
+var buddyStrings = function(s, goal) {
+    
+    if(s.length !== goal.length) {
+        return false;
+    }
+    
+    if(s.length === 2 && goal.length === 2) {
+        let newWord = s[1] + s[0];
+        if(newWord === goal) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    let sArray = s.split('');
+    
+    let indexI = 0;
+    let indexJ = 0;
+    let countDifference = 0;
+    
+    if(s === goal) {
+        for(let i = 0; i < s.length; i++) {
+            for(let j = i+1; j < s.length; j++) {
+                if(s[i] === s[j]) {
+                    return true;
+                }
+            }
+        }
+        
+        return false
+    } else {
+        for(let i = 0; i < s.length; i++) {
+            if(s[i] !== goal[i]) {
+                countDifference++;
+                if(countDifference === 1) {
+                    indexI = i;
+                } else if(countDifference === 2) {
+                    indexJ = i
+                } else {
+                    return false;
+                }
+            }
+        }
+    }
+    
+    
+    let temp = sArray[indexI];
+    sArray[indexI] = sArray[indexJ];
+    sArray[indexJ] = temp;
+    
+    if(sArray.join('') === goal) {
+        return true;
+    }
+    
+    return false;
+   
+    
+};

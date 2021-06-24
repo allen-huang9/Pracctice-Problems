@@ -1,0 +1,32 @@
+
+var isHappy = function(n) {
+    
+    let sum = n;
+    // const arrayOfSums = [];
+    
+    let sumObj = {};
+    
+    while(sum > 1) {
+        let splitSum = sum.toString().split('');
+        sum = 0;
+        
+        for(let i = 0; i < splitSum.length; i++) {            
+            sum += parseInt(splitSum[i]) * parseInt(splitSum[i]);
+        }
+        
+        // if(arrayOfSums.includes(sum)) {
+        //     return false;
+        // }
+        // arrayOfSums.push(sum);
+        
+        if(sumObj[sum]) {
+            return false;
+        } else {
+            sumObj[sum] = sum;
+        }
+           
+    }
+    
+    return true;
+     
+};
