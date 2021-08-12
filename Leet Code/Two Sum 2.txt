@@ -1,0 +1,28 @@
+
+BRUTE FORCE
+var twoSum = function(numbers, target) {
+     for(let i = 0; i < numbers.length; i++) {
+        for(let j = i+1; j < numbers.length; j++) {
+            if(numbers[i] + numbers[j] === target) {
+                return [i+1, j+1];
+            }
+        }
+    }    
+};
+
+OPTIMIZED
+var twoSum = function(numbers, target) {
+     
+    let obj = {};
+    let answer = []
+    for(let i = 0; i < numbers.length; i++) {        
+        if(obj[target - numbers[i]] !== undefined) {
+            answer = [obj[target - numbers[i]]+1, i+1];
+            break;
+        }
+        obj[numbers[i]] = i;
+    }
+
+    return answer;
+    
+};

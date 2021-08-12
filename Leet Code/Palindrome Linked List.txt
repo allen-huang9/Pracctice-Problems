@@ -1,0 +1,49 @@
+
+RECURSIVE
+var isPalindrome = function(head) {
+    
+    let isPalindrome = true;
+    Recursion(head);
+    
+    return isPalindrome;
+    
+    
+    function Recursion(currentHead) {
+        if(currentHead === null) {
+            return;
+        }
+        
+        Recursion(currentHead.next);
+        
+        if(currentHead.val !== head.val) {
+            isPalindrome = false;
+        }
+        head = head.next;
+
+    }
+};
+
+NON-RECURSIVE
+var isPalindrome = function(head) {
+    
+    if(head.next === null) {
+        return true;
+    }
+    
+    const values = [];
+    
+    while(head) {
+        
+        values.push(head.val);
+        
+        head = head.next;
+    }
+    
+    for(let i = 0; i < values.length / 2; i++) {
+        if(values[i] !== values[values.length - 1 - i]) {
+            return false;
+        }
+    }
+    
+    return true;
+};

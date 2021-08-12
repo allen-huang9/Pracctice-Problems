@@ -1,0 +1,13 @@
+var twoSum = function(nums, target) {
+    let obj = {};
+    let answer = []
+    for(let i = 0; i < nums.length; i++) {        
+        if(obj[target - nums[i]] !== undefined) {
+            answer = [i, obj[target - nums[i]]];
+            break;
+        }
+        obj[nums[i]] = i;
+    }
+
+    return answer;
+};
